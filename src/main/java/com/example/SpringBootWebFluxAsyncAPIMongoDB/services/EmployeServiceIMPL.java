@@ -3,6 +3,7 @@ package com.example.SpringBootWebFluxAsyncAPIMongoDB.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.SpringBootWebFluxAsyncAPIMongoDB.entities.Contrat;
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.entities.Employe;
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.repositories.ContratRepository;
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.repositories.DepartementRepository;
@@ -36,17 +37,17 @@ public class EmployeServiceIMPL implements EmployeService {
 	}
 
 	@Override
-	public Mono<Employe> updateEmploye(Employe em) {
+	public Mono<Employe> updateEmploye(Employe em , String id) {
 		return employeRepository.save(em);
 	}
 
 	@Override
-	public Mono<Void> deleteEmploye(int em) {
+	public Mono<Void> deleteEmploye(String em) {
 		return employeRepository.deleteById(em);
 	}
 
 	@Override
-	public Mono<Employe> getEmploye(int em) {
+	public Mono<Employe> getEmploye(String em) {
 		return employeRepository.findById(em);
 	}
 
@@ -56,8 +57,16 @@ public class EmployeServiceIMPL implements EmployeService {
 	}
 
 	@Override
-	public Mono<Void> affectContToEmp(int idCrt, int idEmp) {
+	public Mono<Void> affectContToEmp(String idCrt, String idEmp) {
+		Mono<Contrat>updateCont=contratRepository.findById(idCrt);
+		Mono<Employe> updateEmp=employeRepository.findById(idEmp);
 		return null;
+		
+		
+		
+		
+		
+		
 	}
 	
 

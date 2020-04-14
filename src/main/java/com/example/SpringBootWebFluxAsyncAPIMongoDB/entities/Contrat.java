@@ -13,17 +13,21 @@ import lombok.Data;
 public class Contrat {
 
 	    @Id
-		private int id;
+		private String idContrat;
 		private String dateDebut;
 		private String typeContrat;
 		private int salaire;
 		
 		
-		public int getId() {
-			return id;
+		
+		
+		
+		
+		public String getIdContrat() {
+			return idContrat;
 		}
-		public void setId(int id) {
-			this.id = id;
+		public void setIdContrat(String idContrat) {
+			this.idContrat = idContrat;
 		}
 		public String getDateDebut() {
 			return dateDebut;
@@ -45,8 +49,8 @@ public class Contrat {
 		}
 		@Override
 		public String toString() {
-			return "Contrat [id=" + id + ", dateDebut=" + dateDebut + ", typeContrat=" + typeContrat + ", salaire="
-					+ salaire + "]";
+			return "Contrat [idContrat=" + idContrat + ", dateDebut=" + dateDebut + ", typeContrat=" + typeContrat
+					+ ", salaire=" + salaire + "]";
 		}
 		
 		

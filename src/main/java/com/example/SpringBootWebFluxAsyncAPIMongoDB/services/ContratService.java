@@ -9,8 +9,8 @@ import reactor.core.publisher.Mono;
 
 public interface ContratService {
 	public Mono<Contrat> addContrat(Contrat crt);
-	public Mono<Contrat> updateContrat(Contrat crt);
-	public Mono<Void> deleteContrat(int crt);
-	public Mono<Contrat> getContrat(int crt);
+	public Mono<Contrat> updateContrat(Contrat crt, String id);
+	public Mono<Void> deleteContrat(String crt);
+	public Mono<Contrat> getContrat(String crt);
 	public Flux<Contrat> getAllContrat();
 }

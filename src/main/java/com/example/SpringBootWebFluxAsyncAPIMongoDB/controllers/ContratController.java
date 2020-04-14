@@ -27,7 +27,7 @@ public class ContratController {
 	}
 	
 	@GetMapping("/getOneContrat/{id}")
-	public Mono<ResponseEntity<Contrat>> getContrat(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Contrat>> getContrat(@PathVariable("id") String id) {
 		return contratService.getContrat(id)
 			     .map(ResponseEntity::ok)
 			     .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -39,14 +39,14 @@ public class ContratController {
 	}
 	
 	@PostMapping("/updateContrat/{id}")
-	public Mono<ResponseEntity<Contrat>> updateContrat(@RequestBody Contrat crt) {
-		return contratService.updateContrat(crt)
+	public Mono<ResponseEntity<Contrat>> updateContrat(@RequestBody Contrat crt,@PathVariable(value="id") String id) {
+		return contratService.updateContrat(crt , id)
 		.map(updateContrat -> new ResponseEntity<Contrat>(updateContrat, HttpStatus.OK))
 		.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
 	@PostMapping("/api/contrat/{id}")
-	public Mono<ResponseEntity<Void>> deleteContrat(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Void>> deleteContrat(@PathVariable("id") String id) {
 		return contratService.deleteContrat(id).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)));
 	}
 

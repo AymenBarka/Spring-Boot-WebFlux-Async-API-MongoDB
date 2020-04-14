@@ -9,11 +9,11 @@ import reactor.core.publisher.Mono;
 
 public interface EmployeService {
 	public Mono<Employe> addEmploye(Employe em);
-	public Mono<Employe> updateEmploye(Employe em);
-	public Mono<Void> deleteEmploye(int em);
-	public Mono<Employe> getEmploye(int em);
+	public Mono<Employe> updateEmploye(Employe em, String id);
+	public Mono<Void> deleteEmploye(String em);
+	public Mono<Employe> getEmploye(String em);
 	public Flux<Employe> getAllEmploye();
-	public Mono<Void> affectContToEmp(int idCrt, int idEmp);
+	public Mono<Void> affectContToEmp(String idCrt, String idEmp);
 	
 
 }

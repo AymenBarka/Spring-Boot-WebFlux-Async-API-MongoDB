@@ -27,7 +27,7 @@ public class EmployeController {
 	}
 	
 	@GetMapping("/getOneEmploye/{id}")
-	public Mono<ResponseEntity<Employe>> getEmploye(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Employe>> getEmploye(@PathVariable(value="id") String id) {
 		return employeService.getEmploye(id)
 			     .map(ResponseEntity::ok)
 			     .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -39,15 +39,19 @@ public class EmployeController {
 	}
 	
 	@PostMapping("/updateEmploye/{id}")
-	public Mono<ResponseEntity<Employe>> updateEmploye(@RequestBody Employe employe) {
-		return employeService.updateEmploye(employe)
+	public Mono<ResponseEntity<Employe>> updateEmploye( @RequestBody Employe employe,@PathVariable(value="id") String id) {
+		return employeService.updateEmploye(employe, id)
 		.map(updateEmploye -> new ResponseEntity<Employe>(updateEmploye, HttpStatus.OK))
 		.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
 	@PostMapping("/api/employe/{id}")
-	public Mono<ResponseEntity<Void>> deleteEmploye(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Void>> deleteEmploye(@PathVariable("id") String id) {
 		return employeService.deleteEmploye(id).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)));
+	}
+    @GetMapping("/affectEmployeToContrat/{idEmp}/{idCrt}")
+	public Mono<Void> affectContToEmp(@PathVariable (value="idCrt")String idCrt, @PathVariable (value="idEmp")String idEmp) {
+		return employeService.affectContToEmp(idCrt, idEmp);
 	}
 
 }

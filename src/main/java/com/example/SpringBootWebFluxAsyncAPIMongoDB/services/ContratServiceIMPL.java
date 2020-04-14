@@ -23,18 +23,18 @@ public class ContratServiceIMPL implements ContratService {
 	}
 
 	@Override
-	public Mono<Contrat> updateContrat(Contrat crt) {
+	public Mono<Contrat> updateContrat(Contrat crt, String id) {
 		
 		return contratRepository.save(crt);
 	}
 
 	@Override
-	public Mono<Void> deleteContrat(int crt) {
+	public Mono<Void> deleteContrat(String crt) {
 		return contratRepository.deleteById(crt);
 	}
 
 	@Override
-	public Mono<Contrat> getContrat(int crt) {
+	public Mono<Contrat> getContrat(String crt) {
 		return contratRepository.findById(crt);
 	}
 

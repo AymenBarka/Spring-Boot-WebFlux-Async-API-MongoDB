@@ -18,7 +18,7 @@ import lombok.Data;
 public class Employe {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private String idEmploye;
 	private String nom;
 	private String prenom;
 	private Boolean isActif;
@@ -29,11 +29,13 @@ public class Employe {
 	private List<Mission> mission;
 	private Departement departement;
 	
-	public int getId() {
-		return id;
+	
+	
+	public String getIdEmploye() {
+		return idEmploye;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdEmploye(String idEmploye) {
+		this.idEmploye = idEmploye;
 	}
 	public String getNom() {
 		return nom;
@@ -94,9 +96,9 @@ public class Employe {
 	}
 	@Override
 	public String toString() {
-		return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", isActif=" + isActif + ", email=" + email
-				+ ", role=" + role + ", contrat=" + contrat + ", entreprise=" + entreprise + ", mission=" + mission
-				+ ", departement=" + departement + "]";
+		return "Employe [idEmploye=" + idEmploye + ", nom=" + nom + ", prenom=" + prenom + ", isActif=" + isActif
+				+ ", email=" + email + ", role=" + role + ", contrat=" + contrat + ", entreprise=" + entreprise
+				+ ", mission=" + mission + ", departement=" + departement + "]";
 	}
 	
 	

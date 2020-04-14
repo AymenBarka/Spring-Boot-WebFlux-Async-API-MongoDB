@@ -40,7 +40,7 @@ public class EntrepriseController {
 	}
 	
 	@PostMapping("/updateEntreprise/{id}")
-	public Mono<ResponseEntity<Entreprise>> updateEntreprise(@RequestBody Entreprise ent) {
+	public Mono<ResponseEntity<Entreprise>> updateEntreprise(@RequestBody Entreprise ent,@PathVariable(value="id") int id) {
 		return entrepriseService.updateEntreprise(ent)
 		.map(updateEntreprise -> new ResponseEntity<Entreprise>(updateEntreprise, HttpStatus.OK))
 		.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));

@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.entities.Contrat;
 
-public interface ContratRepository extends ReactiveMongoRepository<Contrat,Integer> {
+public interface ContratRepository extends ReactiveMongoRepository<Contrat ,String> {
 
 }
