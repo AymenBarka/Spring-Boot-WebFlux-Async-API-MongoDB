@@ -9,8 +9,8 @@ import reactor.core.publisher.Mono;
 
 public interface EntrepriseService {
 	public Mono<Entreprise> addEntreprise(Entreprise ent);
-	public Mono<Entreprise> updateEntreprise(Entreprise ent);
-	public Mono<Void> deleteEntreprise(int ent);
-	public Mono<Entreprise> getEntreprise(int ent);
+	public Mono<Entreprise> updateEntreprise(Entreprise ent, String id);
+	public Mono<Void> deleteEntreprise(String ent);
+	public Mono<Entreprise> getEntreprise(String ent);
 	public Flux<Entreprise> getAllEntreprise();
 }

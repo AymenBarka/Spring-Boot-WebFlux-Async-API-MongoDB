@@ -21,17 +21,17 @@ public class DepartementServiceIMPL implements DepartementService {
 	}
 
 	@Override
-	public Mono<Departement> updateDepartement(Departement dep) {
-		return departementRepository.save(dep);
+	public Mono<Departement> updateDepartement(Departement dep, String id) {
+		return departementRepository.save(dep );
 	}
 
 	@Override
-	public Mono<Void> deleteDepartement(int dep) {
+	public Mono<Void> deleteDepartement(String dep) {
 		return departementRepository.deleteById(dep);
 	}
 
 	@Override
-	public Mono<Departement> getDepartement(int dep) {
+	public Mono<Departement> getDepartement(String dep) {
 		return departementRepository.findById(dep);
 	}
 
@@ -39,5 +39,7 @@ public class DepartementServiceIMPL implements DepartementService {
 	public Flux<Departement> getAllDepartement() {
 		return departementRepository.findAll();
 	}
+
+	
 
 }

@@ -9,8 +9,8 @@ import reactor.core.publisher.Mono;
 
 public interface DepartementService {
 	public Mono<Departement> addDepartement(Departement dep);
-	public Mono<Departement> updateDepartement(Departement dep);
-	public Mono<Void> deleteDepartement(int dep);
-	public Mono<Departement> getDepartement(int dep);
+	public Mono<Departement> updateDepartement(Departement dep , String id);
+	public Mono<Void> deleteDepartement(String dep);
+	public Mono<Departement> getDepartement(String dep);
 	public Flux<Departement> getAllDepartement();
 }

@@ -28,7 +28,7 @@ public class EntrepriseController {
 	}
 	
 	@GetMapping("/getOneEntreprise/{id}")
-	public Mono<ResponseEntity<Entreprise>> getEntreprise(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Entreprise>> getEntreprise(@PathVariable("id") String id) {
 		return entrepriseService.getEntreprise(id)
 			     .map(ResponseEntity::ok)
 			     .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -40,14 +40,14 @@ public class EntrepriseController {
 	}
 	
 	@PostMapping("/updateEntreprise/{id}")
-	public Mono<ResponseEntity<Entreprise>> updateEntreprise(@RequestBody Entreprise ent,@PathVariable(value="id") int id) {
-		return entrepriseService.updateEntreprise(ent)
+	public Mono<ResponseEntity<Entreprise>> updateEntreprise(@RequestBody Entreprise ent,@PathVariable(value="id") String id) {
+		return entrepriseService.updateEntreprise(ent , id)
 		.map(updateEntreprise -> new ResponseEntity<Entreprise>(updateEntreprise, HttpStatus.OK))
 		.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
 	@PostMapping("/api/entreprise/{id}")
-	public Mono<ResponseEntity<Void>> deleteEntreprise(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Void>> deleteEntreprise(@PathVariable("id") String id) {
 		return entrepriseService.deleteEntreprise(id).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)));
 	}
 

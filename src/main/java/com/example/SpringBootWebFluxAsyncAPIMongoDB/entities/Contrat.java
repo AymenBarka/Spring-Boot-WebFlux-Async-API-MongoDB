@@ -1,5 +1,7 @@
 package com.example.SpringBootWebFluxAsyncAPIMongoDB.entities;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,7 +15,8 @@ import lombok.Data;
 public class Contrat {
 
 	    @Id
-		private String idContrat;
+	    @GeneratedValue(strategy=GenerationType.AUTO)
+		private String id;
 		private String dateDebut;
 		private String typeContrat;
 		private int salaire;
@@ -23,11 +26,12 @@ public class Contrat {
 		
 		
 		
-		public String getIdContrat() {
-			return idContrat;
+		
+		public String getId() {
+			return id;
 		}
-		public void setIdContrat(String idContrat) {
-			this.idContrat = idContrat;
+		public void setId(String id) {
+			this.id = id;
 		}
 		public String getDateDebut() {
 			return dateDebut;
@@ -49,8 +53,8 @@ public class Contrat {
 		}
 		@Override
 		public String toString() {
-			return "Contrat [idContrat=" + idContrat + ", dateDebut=" + dateDebut + ", typeContrat=" + typeContrat
-					+ ", salaire=" + salaire + "]";
+			return "Contrat [id=" + id + ", dateDebut=" + dateDebut + ", typeContrat=" + typeContrat + ", salaire="
+					+ salaire + "]";
 		}
 		
 		

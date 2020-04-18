@@ -1,13 +1,19 @@
 package com.example.SpringBootWebFluxAsyncAPIMongoDB.entities;
 
 
-import java.util.List;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,25 +23,38 @@ import lombok.Data;
 @Document(collection="projet_DB")
 public class Employe {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String idEmploye;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private String id;
 	private String nom;
 	private String prenom;
 	private Boolean isActif;
 	private String email;
-	private Role role;
-	private Contrat contrat;
-	private Entreprise entreprise;
-	private List<Mission> mission;
-	private Departement departement;
+	private String role ;
+	private String idContrat;
+	private String idEntreprise;
+	private String idMission;
+	private String idDepartement;
 	
 	
 	
-	public String getIdEmploye() {
-		return idEmploye;
+	
+	
+	
+	
+	
+
+	
+	public String getRole() {
+		return role;
 	}
-	public void setIdEmploye(String idEmploye) {
-		this.idEmploye = idEmploye;
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getNom() {
 		return nom;
@@ -61,44 +80,48 @@ public class Employe {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Role getRole() {
-		return role;
+	
+	
+	
+	
+	
+	
+	public String getIdContrat() {
+		return idContrat;
 	}
-	public void setRole(Role role) {
-		this.role = role;
+	public void setIdContrat(String idContrat) {
+		this.idContrat = idContrat;
 	}
 	
-	public Contrat getContrat() {
-		return contrat;
+	
+	public String getIdEntreprise() {
+		return idEntreprise;
 	}
-	public void setContrat(Contrat contrat) {
-		this.contrat = contrat;
+	public void setIdEntreprise(String idEntreprise) {
+		this.idEntreprise = idEntreprise;
 	}
-	public Entreprise getEntreprise() {
-		return entreprise;
+	public String getIdDepartement() {
+		return idDepartement;
 	}
-	public void setEntreprise(Entreprise entreprise) {
-		this.entreprise = entreprise;
+	public void setIdDepartement(String idDepartement) {
+		this.idDepartement = idDepartement;
 	}
 	
-	public Departement getDepartement() {
-		return departement;
+	
+	
+	public String getIdMission() {
+		return idMission;
 	}
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
+	public void setIdMission(String idMission) {
+		this.idMission = idMission;
 	}
 	
-	public List<Mission> getMission() {
-		return mission;
-	}
-	public void setMission(List<Mission> mission) {
-		this.mission = mission;
-	}
+	
 	@Override
 	public String toString() {
-		return "Employe [idEmploye=" + idEmploye + ", nom=" + nom + ", prenom=" + prenom + ", isActif=" + isActif
-				+ ", email=" + email + ", role=" + role + ", contrat=" + contrat + ", entreprise=" + entreprise
-				+ ", mission=" + mission + ", departement=" + departement + "]";
+		return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", isActif=" + isActif + ", email=" + email
+				+ ", role=" + role + ", idContrat=" + idContrat + ", idEntreprise=" + idEntreprise + ", idMission="
+				+ idMission + ", idDepartement=" + idDepartement + "]";
 	}
 	
 	

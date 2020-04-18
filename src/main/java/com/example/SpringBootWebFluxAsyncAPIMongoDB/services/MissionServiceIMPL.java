@@ -20,17 +20,17 @@ public class MissionServiceIMPL implements MissionService {
 	}
 
 	@Override
-	public Mono<Mission> updateMission(Mission mis) {
+	public Mono<Mission> updateMission(Mission mis, String id) {
 		return missionRepository.save(mis);
 	}
 
 	@Override
-	public Mono<Void> deleteMission(int mis) {
+	public Mono<Void> deleteMission(String mis) {
 		return missionRepository.deleteById(mis);
 	}
 
 	@Override
-	public Mono<Mission> getMission(int mis) {
+	public Mono<Mission> getMission(String mis) {
 		return missionRepository.findById(mis);
 	}
 

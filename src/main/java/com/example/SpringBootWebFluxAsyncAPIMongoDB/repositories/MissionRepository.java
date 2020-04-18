@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.entities.Mission;
 
-public interface MissionRepository extends ReactiveMongoRepository<Mission,Integer> {
+public interface MissionRepository extends ReactiveMongoRepository<Mission,String> {
 
 }

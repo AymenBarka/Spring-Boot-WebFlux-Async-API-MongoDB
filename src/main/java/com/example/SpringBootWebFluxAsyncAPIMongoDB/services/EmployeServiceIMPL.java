@@ -1,9 +1,12 @@
 package com.example.SpringBootWebFluxAsyncAPIMongoDB.services;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.SpringBootWebFluxAsyncAPIMongoDB.entities.Contrat;
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.entities.Employe;
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.repositories.ContratRepository;
 import com.example.SpringBootWebFluxAsyncAPIMongoDB.repositories.DepartementRepository;
@@ -32,12 +35,14 @@ public class EmployeServiceIMPL implements EmployeService {
 
 	@Override
 	public Mono<Employe> addEmploye(Employe em) {
-		
+
 		return employeRepository.save(em);
+		
 	}
 
 	@Override
 	public Mono<Employe> updateEmploye(Employe em , String id) {
+		
 		return employeRepository.save(em);
 	}
 
@@ -57,17 +62,57 @@ public class EmployeServiceIMPL implements EmployeService {
 	}
 
 	@Override
-	public Mono<Void> affectContToEmp(String idCrt, String idEmp) {
-		Mono<Contrat>updateCont=contratRepository.findById(idCrt);
-		Mono<Employe> updateEmp=employeRepository.findById(idEmp);
-		return null;
-		
-		
-		
-		
-		
+	public Mono<Employe> affectContToEmp(String idCrt, String idEmp) {
+		// Mono<Employe> updateEmp=employeRepository.findById(idEmp);
+				 return employeRepository.findById(idEmp)
+				            .switchIfEmpty(Mono.error(new Exception("EMPLOYE_NOT_FOUND")))
+				            .map(emp -> {
+				            	emp. setIdContrat(idCrt);
+				            	return emp;
+				            })
+				            .flatMap(employeRepository::save);
 		
 	}
+
+	@Override
+	public Mono<Employe> affectDeptToEmp(String idDept, String idEmp) {
+		 return employeRepository.findById(idEmp)
+		            .switchIfEmpty(Mono.error(new Exception("EMPLOYE_NOT_FOUND")))
+		            .map(emp -> {
+		            	emp.setIdDepartement(idDept);; 
+		            	return emp;
+		            })
+		            .flatMap(employeRepository::save);
+
+		
+	}
+
+	@Override
+	public Mono<Employe> affectEntToEmp(String idEnt, String idEmp) {
+		return employeRepository.findById(idEmp)
+	            .switchIfEmpty(Mono.error(new Exception("EMPLOYE_NOT_FOUND")))
+	            .map(emp -> {
+	            	emp.setIdEntreprise(idEnt);
+	            	return emp;
+	            })
+	            .flatMap(employeRepository::save);
+	}
+
+	@Override
+	public Mono<Employe> affectMissToEmp(String idMiss, String idEmp) {
+		return employeRepository.findById(idEmp)
+	            .switchIfEmpty(Mono.error(new Exception("EMPLOYE_NOT_FOUND")))
+	            .map(emp -> {
+	            	emp.setIdMission(idMiss);
+	            	return emp;
+	            })
+	            .flatMap(employeRepository::save);
+	}
+
+		
+	
+	
+
 	
 
 }

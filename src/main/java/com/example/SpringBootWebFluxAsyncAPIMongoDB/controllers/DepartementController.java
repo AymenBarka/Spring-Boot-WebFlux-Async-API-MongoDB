@@ -27,7 +27,7 @@ public class DepartementController {
 	}
 	
 	@GetMapping("/getOneDepartement/{id}")
-	public Mono<ResponseEntity<Departement>> getDepartement(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Departement>> getDepartement(@PathVariable("id") String id) {
 		return departementService.getDepartement(id)
 			     .map(ResponseEntity::ok)
 			     .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -39,14 +39,14 @@ public class DepartementController {
 	}
 	
 	@PostMapping("/updateDepartement/{id}")
-	public Mono<ResponseEntity<Departement>> updateDepartement(@RequestBody Departement dept) {
-		return departementService.updateDepartement(dept)
+	public Mono<ResponseEntity<Departement>> updateDepartement(@RequestBody Departement dept, @PathVariable(value="id") String id) {
+		return departementService.updateDepartement(dept, id)
 		.map(updateDepartement -> new ResponseEntity<Departement>(updateDepartement, HttpStatus.OK))
 		.defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
 	@PostMapping("/api/departement/{id}")
-	public Mono<ResponseEntity<Void>> deleteDepartement(@PathVariable("id") int id) {
+	public Mono<ResponseEntity<Void>> deleteDepartement(@PathVariable("id") String id) {
 		return departementService.deleteDepartement(id).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)));
 	}
 
